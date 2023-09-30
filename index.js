@@ -1,9 +1,9 @@
 import Game from "./classes/Game.js";
-import { 
-  ALL_CHARACTERS, 
-  ALL_DIFICULTIES, 
-  DEFAULT_DIFFICULTY 
-} from "./constants.js"; 
+import {
+  ALL_CHARACTERS,
+  ALL_DIFICULTIES,
+  DEFAULT_DIFFICULTY
+} from "./constants.js";
 
 const body = document.querySelector('body');
 const display = document.querySelector('.display');
@@ -25,7 +25,7 @@ const Confetti = () => {
 const ResultHandler = (result) => {
   if (result) {
     Confetti()
-    gameHistory.wins[currentDifficulty.mode] +=  1
+    gameHistory.wins[currentDifficulty.mode] += 1
   } else {
     gameHistory.loses[currentDifficulty.mode] += 1
   }
@@ -34,13 +34,13 @@ const ResultHandler = (result) => {
     icon: `${result ? "success" : "error"}`,
     title: `You ${result ? "won! 🤗" : "lost! 😔"}`,
   }).then(() => {
-        // Save game history data to localStorage
-        localStorage.setItem("history", JSON.stringify(gameHistory))
+    // Save game history data to localStorage
+    localStorage.setItem("history", JSON.stringify(gameHistory))
 
-        // Reset 
-        ClearDisplay();
-        Run();
-    }) 
+    // Reset 
+    ClearDisplay();
+    Run();
+  })
 }
 
 const GetCharacters = (amount) => {
@@ -66,7 +66,8 @@ const ClearDisplay = () => {
 }
 
 const GenerateDOM = (cards) => {
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
+    card.element.style.animation = `fadeInRight ${(index + 1) * 100}ms ease-in-out`
     display.appendChild(card.element)
   })
 }
@@ -100,16 +101,16 @@ const GameHistoryModal = () => {
       <div style="display: flex">
         <div style="text-align: left">
           ${Object.values(ALL_DIFICULTIES)
-              .map(({ mode }) => `✔️ Wins on ${mode}: ${gameHistory.wins[mode]} <br>`)
-              .join("")
-          }
+        .map(({ mode }) => `✔️ Wins on ${mode}: ${gameHistory.wins[mode]} <br>`)
+        .join("")
+      }
         </div>
         <hr>
         <div style="text-align: left">
           ${Object.values(ALL_DIFICULTIES)
-            .map(({ mode }) => `❌ Loses on ${mode}: ${gameHistory.loses[mode]} <br>`)
-            .join("")
-          }
+        .map(({ mode }) => `❌ Loses on ${mode}: ${gameHistory.loses[mode]} <br>`)
+        .join("")
+      }
         </div>
       </div>
     `,
