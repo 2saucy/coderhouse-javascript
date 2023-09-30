@@ -79,7 +79,7 @@ const ChangeDifficulty = () => {
 }
 
 const GetGameHistory = () => {
-  const history = JSON.parse(localStorage.getItem("history"))
+  let history = JSON.parse(localStorage.getItem("history"))
 
   if (!history) {
     history = {
