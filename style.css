@@ -112,18 +112,35 @@ select:focus{
     background-color: red;
 }
 
+/* Header */
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.theme-switcher{
+/* Header buttons */
+
+.theme-switcher,
+.history-button{
     border: none;
+    display: flex;
+    padding: .5rem;
     aspect-ratio: 1;
+    cursor: pointer;
     border-radius: 50%;
+    align-items: center;
+}
+
+.theme-switcher{
     transition: .2s ease-in;
 }
+
+.theme-switcher:hover{
+    transform: scale(1.1);
+}
+
 
 [data-theme="light"] .theme-switcher {
     background-color: black;
@@ -135,13 +152,24 @@ header {
     color: black;
 }
 
-.theme-switcher:hover{
-    transform: scale(1.1);
+.history-button{
+    color: white;
+    background-color: transparent;
 }
 
+.history-button:hover {
+    background-color: rgba(206, 206, 206, 0.2);
+}
+
+[data-theme="light"] .history-button {
+    color: black;
+}
+
+[data-theme="dark"] .history-button {
+    color: white;
+}
 
 /* Google Material Icon */
-
 .material-symbols-outlined {
     font-variation-settings:
     'FILL' 0,
