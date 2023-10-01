@@ -8,9 +8,12 @@ import {
 const body = document.querySelector('body');
 const display = document.querySelector('.display');
 const counter = document.querySelector('.counter');
-const selectDifficulty = document.querySelector('#difficulty');
 const buttonTheme = document.querySelector('.theme-switcher');
+const selectDifficulty = document.querySelector('#difficulty');
 const historyButton = document.querySelector('.history-button');
+
+const winAudio = document.getElementById('winSound');
+const loseAudio = document.getElementById('loseSound');
 
 const Confetti = () => {
   const confettiConfig = {
@@ -24,10 +27,12 @@ const Confetti = () => {
 
 const ResultHandler = (result) => {
   if (result) {
-    Confetti()
+    Confetti();
     gameHistory.wins[currentDifficulty.mode] += 1
+    winAudio.play();
   } else {
     gameHistory.loses[currentDifficulty.mode] += 1
+    loseAudio.play();
   }
 
   Swal.fire({
@@ -127,7 +132,7 @@ const Run = () => {
 
   game.cards.forEach((card) => {
     card.element.onclick = () => {
-      game.showCard(card)
+      game.showCard(card);
       counter.textContent = game.movements;
 
       if (game.allVisibles() && game.movements >= 0) {

@@ -1,3 +1,6 @@
+const flipSound = document.getElementById('flipSound');
+
+
 export default class Card {
   constructor(value) {
     this.value = value;
@@ -32,6 +35,7 @@ export default class Card {
 
   toggleVisibility = () => {
     this.visibility = !this.visibility
+    flipSound.play();
 
     if (this.visibility) {
       this.element.querySelector('.front').style.display = "block"
